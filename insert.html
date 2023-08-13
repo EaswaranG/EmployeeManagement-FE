@@ -75,9 +75,37 @@
                                 <label for="dateOfJoining">Date of Joining:</label>
                                 <input type="date" class="form-control" id="dateOfJoining" required>
                             </div>
-                            <button type="submit" class="btn btn-primary">Save</button>
+                            <button type="submit" class="btn btn-primary" id="saveBtn">Save</button>
                             <button type="button" id="updateBtn" class="btn btn-secondary ml-2">Update</button>
                             <button type="button" id="cancelBtn" class="btn btn-light ml-2">Cancel</button>
+                        
+                            <script>
+                                document.addEventListener("DOMContentLoaded", function() {
+                                    const saveBtn = document.getElementById("saveBtn");
+                        
+                                    saveBtn.addEventListener("click", function() {
+                                        const url = "http://3.16.129.6:8081/save"; // Change this URL as needed
+                                        fetch(url, {
+                                            method: "POST", // Use the appropriate HTTP method (POST, GET, etc.)
+                                            headers: {
+                                                "Content-Type": "application/json" // Set the appropriate content type
+                                            },
+                                            // If you need to send data in the request body, use the body property
+                                            // body: JSON.stringify({ key: "value" }) 
+                                        })
+                                        .then(response => {
+                                            if (response.ok) {
+                                                console.log("Request successful");
+                                            } else {
+                                                console.error("Request failed");
+                                            }
+                                        })
+                                        .catch(error => {
+                                            console.error("An error occurred:", error);
+                                        });
+                                    });
+                                });
+                            </script>
                         </form>
                     </div>
                 </div>
